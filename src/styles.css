@@ -47,13 +47,12 @@
 
 :root {
   --radius: 0.625rem;
-  /* Warm cream + Thrive green sampled from the provided reference header. */
+
   --background: #f8f2eb;
   --foreground: #17100b;
   --ink: #061510;
   --cream: #f8f2eb;
 
-  /* Thrive green: #006f5a */
   --coral: #006f5a;
   --coral-soft: #dcebe6;
 
@@ -77,8 +76,14 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -86,16 +91,27 @@
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, h5 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--color-ink);
   }
-  h1 { line-height: 0.95; }
+
+  h1 {
+    line-height: 0.95;
+  }
 }
 
-@utility font-display { font-family: var(--font-display); }
+@utility font-display {
+  font-family: var(--font-display);
+}
+
 @utility font-mono-label {
   font-family: var(--font-mono);
   text-transform: uppercase;
@@ -103,15 +119,12 @@
   font-size: 0.7rem;
   color: var(--color-muted-foreground);
 }
+
 @utility serif-italic {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
 }
-
-
-<<<<<<< HEAD
-=======
 
 @layer utilities {
   @keyframes section-soft-rise {
@@ -120,6 +133,7 @@
       transform: translateY(34px) scale(0.992);
       filter: blur(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -128,13 +142,23 @@
   }
 
   @keyframes gentle-float {
-    from { transform: translateY(0); }
-    to { transform: translateY(-10px); }
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-10px);
+    }
   }
 
   @keyframes soft-shine {
-    from { transform: translateX(-130%) skewX(-12deg); }
-    to { transform: translateX(160%) skewX(-12deg); }
+    from {
+      transform: translateX(-130%) skewX(-12deg);
+    }
+
+    to {
+      transform: translateX(160%) skewX(-12deg);
+    }
   }
 
   .animate-gentle-float {
@@ -157,7 +181,12 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(110deg, transparent 0%, rgb(255 255 255 / 0.22) 45%, transparent 58%);
+    background: linear-gradient(
+      110deg,
+      transparent 0%,
+      rgb(255 255 255 / 0.22) 45%,
+      transparent 58%
+    );
     transform: translateX(-130%) skewX(-12deg);
     opacity: 0;
   }
@@ -175,10 +204,65 @@
 
   .image-lift {
     transform: translateZ(0);
-    transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1), filter 650ms ease;
+    transition:
+      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 650ms ease;
   }
 
   .image-lift:hover {
+    transform: scale(1.025) translateY(-3px);
+    filter: saturate(1.04) contrast(1.02);
+  }
+
+  main :is(a, div, button).rounded-2xl.border,
+  main :is(a, div, button).rounded-3xl.border {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    transition:
+      transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 350ms ease,
+      box-shadow 350ms ease,
+      background-color 350ms ease;
+  }
+
+  main :is(a, div, button).rounded-2xl.border::after,
+  main :is(a, div, button).rounded-3xl.border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      110deg,
+      transparent 0%,
+      rgb(255 255 255 / 0.24) 45%,
+      transparent 58%
+    );
+    transform: translateX(-135%) skewX(-12deg);
+    opacity: 0;
+  }
+
+  main :is(a, div, button).rounded-2xl.border:hover,
+  main :is(a, div, button).rounded-3xl.border:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-coral) 58%, transparent);
+    box-shadow: 0 24px 60px -34px color-mix(in srgb, var(--color-coral) 58%, black);
+  }
+
+  main :is(a, div, button).rounded-2xl.border:hover::after,
+  main :is(a, div, button).rounded-3xl.border:hover::after {
+    opacity: 1;
+    animation: soft-shine 850ms ease;
+  }
+
+  main img.rounded-3xl {
+    transform: translateZ(0);
+    transition:
+      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 650ms ease;
+  }
+
+  main img.rounded-3xl:hover {
     transform: scale(1.025) translateY(-3px);
     filter: saturate(1.04) contrast(1.02);
   }
@@ -202,58 +286,15 @@
     .interactive-card,
     .interactive-card:hover,
     .image-lift,
-    .image-lift:hover {
+    .image-lift:hover,
+    main :is(a, div, button).rounded-2xl.border,
+    main :is(a, div, button).rounded-3xl.border,
+    main :is(a, div, button).rounded-2xl.border:hover,
+    main :is(a, div, button).rounded-3xl.border:hover,
+    main img.rounded-3xl,
+    main img.rounded-3xl:hover {
       transform: none;
       transition: none;
     }
   }
 }
-
-@layer utilities {
-  main :is(a, div, button).rounded-2xl.border,
-  main :is(a, div, button).rounded-3xl.border {
-    position: relative;
-    overflow: hidden;
-    transform: translateZ(0);
-    transition:
-      transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 350ms ease,
-      box-shadow 350ms ease,
-      background-color 350ms ease;
-  }
-
-  main :is(a, div, button).rounded-2xl.border::after,
-  main :is(a, div, button).rounded-3xl.border::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(110deg, transparent 0%, rgb(255 255 255 / 0.24) 45%, transparent 58%);
-    transform: translateX(-135%) skewX(-12deg);
-    opacity: 0;
-  }
-
-  main :is(a, div, button).rounded-2xl.border:hover,
-  main :is(a, div, button).rounded-3xl.border:hover {
-    transform: translateY(-6px);
-    border-color: color-mix(in srgb, var(--color-coral) 58%, transparent);
-    box-shadow: 0 24px 60px -34px color-mix(in srgb, var(--color-coral) 58%, black);
-  }
-
-  main :is(a, div, button).rounded-2xl.border:hover::after,
-  main :is(a, div, button).rounded-3xl.border:hover::after {
-    opacity: 1;
-    animation: soft-shine 850ms ease;
-  }
-
-  main img.rounded-3xl {
-    transform: translateZ(0);
-    transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1), filter 650ms ease;
-  }
-
-  main img.rounded-3xl:hover {
-    transform: scale(1.025) translateY(-3px);
-    filter: saturate(1.04) contrast(1.02);
-  }
-}
->>>>>>> ec08a15 (commit)

@@ -80,11 +80,11 @@ function Header() {
     <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/40">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
         <Link to="/" className="inline-flex items-center" aria-label="Thrive home">
-          <img
-            src={thriveLogo}
-            alt="Thrive"
-            className="h-[38px] w-auto object-contain"
-          />
+<img
+  src={thriveLogo}
+  alt="Thrive"
+  className="h-[42px] md:h-[46px] w-auto object-contain contrast-[1.08] saturate-[1.05]"
+/>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-10">

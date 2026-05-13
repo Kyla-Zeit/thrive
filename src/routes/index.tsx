@@ -66,7 +66,7 @@ function Home() {
               <span className="block w-8 h-px bg-coral" />
               <span className="font-mono-label !text-cream/80">Thrive Social Services</span>
             </motion.div>
-            <h1 className="font-display text-7xl md:text-8xl lg:text-[8.5rem] !text-cream font-bold overflow-hidden">
+            <h1 className="font-display text-7xl md:text-8xl lg:text-[8.5rem] !text-cream font-bold leading-[1.08] pb-5 overflow-visible">
               <motion.span
                 className="block"
                 initial={{ y: "110%" }}

@@ -110,3 +110,150 @@
 }
 
 
+<<<<<<< HEAD
+=======
+
+@layer utilities {
+  @keyframes section-soft-rise {
+    from {
+      opacity: 0;
+      transform: translateY(34px) scale(0.992);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes gentle-float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+
+  @keyframes soft-shine {
+    from { transform: translateX(-130%) skewX(-12deg); }
+    to { transform: translateX(160%) skewX(-12deg); }
+  }
+
+  .animate-gentle-float {
+    animation: gentle-float 7s ease-in-out infinite alternate;
+  }
+
+  .interactive-card {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    transition:
+      transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 350ms ease,
+      box-shadow 350ms ease,
+      background-color 350ms ease;
+  }
+
+  .interactive-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 0%, rgb(255 255 255 / 0.22) 45%, transparent 58%);
+    transform: translateX(-130%) skewX(-12deg);
+    opacity: 0;
+  }
+
+  .interactive-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-coral) 58%, transparent);
+    box-shadow: 0 24px 60px -34px color-mix(in srgb, var(--color-coral) 55%, black);
+  }
+
+  .interactive-card:hover::after {
+    opacity: 1;
+    animation: soft-shine 850ms ease;
+  }
+
+  .image-lift {
+    transform: translateZ(0);
+    transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1), filter 650ms ease;
+  }
+
+  .image-lift:hover {
+    transform: scale(1.025) translateY(-3px);
+    filter: saturate(1.04) contrast(1.02);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      main > section:not(:first-child) {
+        animation: section-soft-rise both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 24%;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-gentle-float,
+    .interactive-card:hover::after {
+      animation: none;
+    }
+
+    .interactive-card,
+    .interactive-card:hover,
+    .image-lift,
+    .image-lift:hover {
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
+@layer utilities {
+  main :is(a, div, button).rounded-2xl.border,
+  main :is(a, div, button).rounded-3xl.border {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    transition:
+      transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 350ms ease,
+      box-shadow 350ms ease,
+      background-color 350ms ease;
+  }
+
+  main :is(a, div, button).rounded-2xl.border::after,
+  main :is(a, div, button).rounded-3xl.border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 0%, rgb(255 255 255 / 0.24) 45%, transparent 58%);
+    transform: translateX(-135%) skewX(-12deg);
+    opacity: 0;
+  }
+
+  main :is(a, div, button).rounded-2xl.border:hover,
+  main :is(a, div, button).rounded-3xl.border:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-coral) 58%, transparent);
+    box-shadow: 0 24px 60px -34px color-mix(in srgb, var(--color-coral) 58%, black);
+  }
+
+  main :is(a, div, button).rounded-2xl.border:hover::after,
+  main :is(a, div, button).rounded-3xl.border:hover::after {
+    opacity: 1;
+    animation: soft-shine 850ms ease;
+  }
+
+  main img.rounded-3xl {
+    transform: translateZ(0);
+    transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1), filter 650ms ease;
+  }
+
+  main img.rounded-3xl:hover {
+    transform: scale(1.025) translateY(-3px);
+    filter: saturate(1.04) contrast(1.02);
+  }
+}
+>>>>>>> ec08a15 (commit)

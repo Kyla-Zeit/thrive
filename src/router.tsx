@@ -1,19 +1,28 @@
-import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import { QueryClient } from "@tanstack/react-query";
+import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
-export function createRouter() {
-  const router = createTanStackRouter({
+export const getRouter = () => {
+  const queryClient = new QueryClient();
+
+  const basepath =
+    import.meta.env.BASE_URL === "/"
+      ? "/"
+      : import.meta.env.BASE_URL.replace(/\/$/, "");
+
+  const router = createRouter({
     routeTree,
-    basepath: "/thrive",
+    context: { queryClient },
+    basepath,
     scrollRestoration: true,
-    defaultPreload: "intent",
+    defaultPreloadStaleTime: 0,
   });
 
   return router;
-}
+};
 
 declare module "@tanstack/react-router" {
   interface Register {
-    router: ReturnType<typeof createRouter>;
+    router: ReturnType<typeof getRouter>;
   }
 }

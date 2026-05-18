@@ -7,7 +7,7 @@ The demo illustrates a modern visual direction, improved information architectur
 
 ---
 
-## Features
+## 🚀 Features
 
 - **Dual user pathways:** separate calls‑to‑action and navigation flows for people seeking support and those wishing to donate or learn more about campaigns.
 - **Campaign readiness:** a landing page for the Foundry Westshore capital campaign with donation prompts and storytelling sections.

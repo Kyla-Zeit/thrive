@@ -80,8 +80,6 @@ thrive/
 └── README.md
 
 ```
-```
-
 ---
 
 ## Tech Stack

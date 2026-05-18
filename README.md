@@ -82,7 +82,7 @@ thrive/
 ```
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **React** — component‑based UI library
 - **Vite** — modern build tooling for rapid dev and optimized production builds

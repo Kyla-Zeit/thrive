@@ -1,98 +1,332 @@
-# THRIVE Website Redesign (Concept Demo)
+# THRIVE Website Redesign
 
-This repository contains a concept redesign of **THRIVE Social Services Society**’s website.  
-The demo illustrates a modern visual direction, improved information architecture, dual user journeys (clients vs. donors), and a modular design system that can be translated into a staff‑manageable CMS build.  
+**A responsive social-services website concept focused on clear support pathways, approachable content architecture, campaign storytelling, and accessible community navigation.**
 
-> **Note:** This is *not* the production site.  It’s a front‑end prototype meant to demonstrate layout, styling, interaction patterns, and accessibility considerations.  The full implementation (donation forms, CMS editing, RiseUp integration, blog/news system, analytics, etc.) would be completed as part of the production project.
+THRIVE is an independent portfolio redesign concept for **THRIVE Social Services Society**. The project explores how a community-services organization can make complex program information easier to understand while serving two very different user needs: people looking for support and people looking to donate, advocate, or learn more.
 
----
+**[View the live demo](https://kyla-zeit.github.io/thrive/)**
 
-## 🚀 Features
+> **Portfolio concept:** This repository is not affiliated with, endorsed by, or maintained by THRIVE Social Services Society. It is a front-end redesign prototype created for portfolio demonstration. External service and donation links remain with their respective organizations.
 
-- **Dual user pathways:** separate calls‑to‑action and navigation flows for people seeking support and those wishing to donate or learn more about campaigns.
-- **Campaign readiness:** a landing page for the Foundry Westshore capital campaign with donation prompts and storytelling sections.
-- **Program navigation:** dedicated pages for children, youth, family services, and adult services, organized by audience needs and referral types.
-- **Trauma‑informed UX:** soft color palette, clear typography, accessible contrast, and low‑pressure interactions designed for youth and families in need.
-- **Responsive design:** mobile‑first layouts, large touch targets, scroll‑reveal animations, and adaptive typography across breakpoints.
-- **Built with modern tools:** React + TanStack Router for routing, Vite for fast development, Tailwind CSS for utility‑first styling, Framer Motion for animations, and TypeScript for type safety.
-- **Future‑ready architecture:** the code demonstrates modular components and pages that can be ported into a CMS such as WordPress or another headless solution.
+## Product preview
 
----
+<p align="center">
+  <img src="docs/assets/home-preview.svg" alt="THRIVE homepage concept preview" width="48%" />
+  &nbsp;
+  <img src="docs/assets/programs-preview.svg" alt="THRIVE programs and service pathways preview" width="48%" />
+</p>
 
-## 📁 Project Structure
+<p align="center">
+  <strong>Homepage</strong> — mission-led storytelling, program discovery, impact, and clear support/donor calls to action.<br/>
+  <strong>Program pathways</strong> — structured navigation for families, youth, adults, employment support, and Foundry Westshore.
+</p>
 
-```txt
+<p align="center">
+  <img src="docs/assets/foundry-preview.svg" alt="Foundry Westshore campaign page preview" width="48%" />
+  &nbsp;
+  <img src="docs/assets/support-preview.svg" alt="THRIVE Get Help and donation pathway preview" width="48%" />
+</p>
+
+<p align="center">
+  <strong>Foundry Westshore</strong> — campaign storytelling, integrated youth services, donation prompts, and partner-focused messaging.<br/>
+  <strong>Get Help / Donate</strong> — low-pressure service access paths paired with a focused giving handoff.
+</p>
+
+> The portfolio previews above are source-faithful visualizations based directly on the current React routes, labels, content structure, and cream / ink / green design system. The live GitHub Pages build is the authoritative interactive demo.
+
+## Project at a glance
+
+| Area | Implementation |
+| --- | --- |
+| Frontend | React 19 + TypeScript |
+| Build tooling | Vite 7 |
+| Routing | TanStack Router with file-based routes |
+| Styling | Tailwind CSS 4 + custom design tokens |
+| Motion | Framer Motion |
+| UI primitives | Radix UI / shadcn-style components |
+| Icons | Lucide React |
+| Deployment | GitHub Pages via GitHub Actions |
+| Primary experience | Responsive multi-page nonprofit / social-services website concept |
+
+## The design problem
+
+Social-services websites often have to serve visitors arriving with very different levels of urgency, context, and familiarity with available programs.
+
+This redesign separates those needs into clearer pathways:
+
+```text
+Visitor
+  │
+  ├── Needs Support
+  │      ↓
+  │   Get Help
+  │      ↓
+  │   Community Referral / MCFD / CLBC
+  │      ↓
+  │   Family, Youth or Adult Services
+  │
+  └── Wants to Support THRIVE
+         ↓
+      Mission / Impact / Foundry
+         ↓
+      Donate / Get Involved
+```
+
+The result is a site structure that puts **service access, reassurance, and clear next steps** ahead of organizational complexity.
+
+## Core experience
+
+### Mission-led homepage
+
+The homepage combines a large editorial hero with direct calls to action for **Get Support** and **Learn More**.
+
+It then moves through:
+
+- Mission and organizational purpose
+- Children, youth, family, and adult service pathways
+- Foundry Westshore campaign visibility
+- Rise Up Employment
+- Impact statistics
+- Values and community storytelling
+- Donation and involvement calls to action
+
+The hero uses scroll-linked motion and staged entrance animation while keeping the actual navigation choices simple.
+
+### Program discovery
+
+Program information is separated by audience instead of presented as one large service directory.
+
+Current routed service areas include:
+
+- Children, Youth & Families
+- Adults with Disabilities
+- Foundry Westshore
+- Rise Up Employment context
+- Referral and support pathways
+
+Cards, page hierarchy, route-level metadata, and repeated visual patterns help users move between overview and detail views without relearning the interface.
+
+### Get Help pathway
+
+The `/get-help` experience is intentionally direct and low-pressure.
+
+It distinguishes between:
+
+- Community referrals
+- MCFD or CLBC referrals
+- External community resources
+- Immediate crisis-support information
+
+The page also links users outward to relevant support organizations when THRIVE may not be the right service provider.
+
+### Foundry Westshore campaign
+
+The Foundry route acts as a focused campaign landing page rather than another generic program page.
+
+It includes:
+
+- Youth-focused headline and campaign messaging
+- Opening-2028 positioning
+- Land acknowledgement
+- Integrated-services overview
+- Mental health, substance-use, physical-health, peer-support, work, education, and community-service context
+- Donation and contact actions
+- Closing campaign CTA
+
+This demonstrates how the broader site design system can support a distinct fundraising initiative without feeling disconnected from the parent organization.
+
+### Donation handoff
+
+The donation page presents a simple amount-selection experience with preset amounts before handing the user to the external CanadaHelps donation flow.
+
+```text
+Choose Amount
+     ↓
+Donation CTA
+     ↓
+External CanadaHelps Flow
+```
+
+No payment information is collected or processed by this prototype.
+
+## Information architecture
+
+The current application includes dedicated routes for:
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Homepage, mission, programs, impact, calls to action |
+| `/about` | Organization story, values, and context |
+| `/family-services` | Children, youth, and family services |
+| `/adult-services` | Adult services and community inclusion |
+| `/foundry` | Foundry Westshore campaign page |
+| `/get-help` | Referral pathways and community resources |
+| `/donate` | Donation amount selection and external handoff |
+| `/contact` | Contact and involvement pathway |
+
+TanStack Router provides the file-based route structure, while each major page defines its own metadata for titles and descriptions.
+
+## Design system
+
+The redesign uses a softer editorial visual language intended to feel calm, capable, and human rather than institutional.
+
+### Colour
+
+- Warm cream page background
+- Deep ink for high-contrast editorial sections
+- Dark green as the primary action colour
+- Pale green supporting surfaces
+- Soft neutral borders and card backgrounds
+
+### Typography
+
+The theme uses a serif display stack for major storytelling moments and a clean sans-serif body stack for service information. Small uppercase mono-style labels create hierarchy without adding visual noise.
+
+### Interaction
+
+- Rounded cards and pill-shaped calls to action
+- Scroll reveal and staggered content motion
+- Subtle card lift / highlight interactions
+- Responsive type scaling
+- Large touch targets
+- Persistent, predictable route structure
+- Smooth scrolling and reduced visual density around critical support actions
+
+## Responsive approach
+
+The site is designed mobile-first and expands into broader editorial layouts on larger screens.
+
+Responsive behavior includes:
+
+- Stacked mobile service cards
+- Multi-column program and impact grids on desktop
+- Flexible hero typography
+- Wrapping CTA groups
+- Adaptive Foundry layout
+- Navigation patterns sized for touch interaction
+
+## Architecture
+
+```text
+┌───────────────────────────────────────────────┐
+│ React + TypeScript                            │
+│ Routes · Components · Content · Motion        │
+└──────────────────────┬────────────────────────┘
+                       │
+                       ▼
+┌───────────────────────────────────────────────┐
+│ TanStack Router                               │
+│ File-based pages + route metadata             │
+└──────────────────────┬────────────────────────┘
+                       │
+                       ▼
+┌───────────────────────────────────────────────┐
+│ Tailwind CSS + Custom Theme                   │
+│ Responsive layout · tokens · interaction      │
+└──────────────────────┬────────────────────────┘
+                       │
+                       ▼
+┌───────────────────────────────────────────────┐
+│ Vite Production Build                        │
+│ GitHub Actions → GitHub Pages                 │
+└───────────────────────────────────────────────┘
+```
+
+## Tech stack
+
+- React 19
+- TypeScript
+- Vite 7
+- TanStack Router
+- TanStack React Query
+- Tailwind CSS 4
+- Framer Motion
+- Radix UI primitives
+- Lucide React
+- React Hook Form / Zod dependencies for extensible form work
+- ESLint
+- Prettier
+- GitHub Actions
+- GitHub Pages
+
+## Run locally
+
+### Install dependencies
+
+```bash
+npm ci
+```
+
+### Start development mode
+
+```bash
+npm run dev
+```
+
+### Production build
+
+```bash
+npm run build
+```
+
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Deployment
+
+The project deploys automatically to GitHub Pages from `main` using GitHub Actions.
+
+The workflow:
+
+```text
+Push to main
+    ↓
+npm ci
+    ↓
+npm run build
+    ↓
+Upload ./dist
+    ↓
+Deploy to GitHub Pages
+```
+
+**Live demo:** https://kyla-zeit.github.io/thrive/
+
+## Project structure
+
+```text
 thrive/
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml              # GitHub Pages deployment workflow
-│
+│       └── deploy.yml
+├── docs/
+│   └── assets/              # README portfolio previews
 ├── src/
-│   ├── assets/                     # Site images and logo assets
-│   │   ├── adults.jpg
-│   │   ├── coast.jpg
-│   │   ├── family.jpg
-│   │   ├── foundry.jpg
-│   │   ├── hero.jpg
-│   │   ├── seedling.jpg
-│   │   ├── thrive-logo.png
-│   │   └── thrive-logo_onwhite.png
-│   │
-│   ├── components/
-│   │   ├── Reveal.tsx              # Scroll reveal and card animation helpers
-│   │   ├── SiteLayout.tsx          # Main site layout, navigation, footer
-│   │   └── ui/                     # Reusable UI components
-│   │
-│   ├── hooks/
-│   │   └── use-mobile.tsx          # Mobile viewport detection hook
-│   │
-│   ├── lib/
-│   │   ├── async-local-storage-browser.ts
-│   │   ├── error-capture.ts
-│   │   ├── error-page.ts
-│   │   └── utils.ts                # Shared helper utilities
-│   │
-│   ├── routes/                     # TanStack Router page routes
-│   │   ├── __root.tsx              # Root layout route
-│   │   ├── about.tsx               # About THRIVE page
-│   │   ├── adult-services.tsx      # Adult services page
-│   │   ├── contact.tsx             # Contact page and form
-│   │   ├── donate.tsx              # Donation page
-│   │   ├── family-services.tsx     # Children, youth & family services page
-│   │   ├── foundry.tsx             # Foundry Westshore campaign page
-│   │   ├── get-help.tsx            # Service access / support pathways
-│   │   └── index.tsx               # Homepage
-│   │
-│   ├── main.tsx                    # React entry point
-│   ├── router.tsx                  # Router setup
-│   ├── routeTree.gen.ts            # Generated TanStack route tree
-│   ├── server.ts
-│   ├── start.ts
-│   └── styles.css                  # Tailwind theme, global styles, animations
-│
-├── index.html                      # Base HTML document
-├── package.json                    # Scripts and dependencies
-├── package-lock.json
-├── tsconfig.json                   # TypeScript configuration
-├── vite.config.ts                  # Vite, Tailwind, alias, and GitHub Pages config
-├── components.json                 # shadcn/ui component configuration
-├── eslint.config.js
+│   ├── assets/              # Site photography and brand assets
+│   ├── components/          # Shared layout, reveal, and UI components
+│   ├── hooks/               # Responsive/client hooks
+│   ├── lib/                 # Shared utilities
+│   ├── routes/              # File-based application routes
+│   ├── routeTree.gen.ts     # Generated TanStack route tree
+│   ├── router.tsx
+│   ├── main.tsx
+│   └── styles.css           # Theme tokens and interaction system
+├── package.json
+├── vite.config.ts
 └── README.md
-
 ```
----
 
-## 🛠️ Tech Stack
+## Scope
 
-- **React** — component‑based UI library
-- **Vite** — modern build tooling for rapid dev and optimized production builds
-- **TanStack Router** — file‑based routing and navigation handling
-- **Tailwind CSS** — utility‑first styling with custom theme tokens
-- **Framer Motion** — declarative animations and scroll‑reveal effects
-- **TypeScript** — static typing and IDE support
+THRIVE is a **front-end redesign concept**, not a production service platform. Content, service descriptions, campaign references, and outbound links are used to demonstrate information architecture and interaction design.
 
----
-
-## 🌐 Deployment
-Deployed using **GitHub Pages**.  
-Access it here → https://kyla-zeit.github.io/thrive/
+A production implementation would require organizational review, content governance, accessibility validation, analytics, a staff-managed CMS, secure production forms, donation-provider integration, and any required service-platform integrations.
